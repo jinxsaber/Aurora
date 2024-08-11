@@ -2,11 +2,12 @@ const cont = document.querySelector('h1');
 const mon = document.querySelector('h2');
 const weather = document.querySelector('.weather');
 const drop_cities = document.querySelector('select');
+const full = document.querySelector('.all');
 
 let cityId = -1;
 
 const dat = async (lon,lat) => {
-    const res = await fetch(`http://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`);
+    const res = await fetch(`https://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`);
     const temp = await res.json();
     return temp;
 }
@@ -39,21 +40,60 @@ const fetchCityCoordinates = async (id) => {
     const ttt = await response.json();
     const city = ttt.find(city => city.id === parseInt(id));
     if (city) {
+        full.innerHTML = "";
         const { lat, lon } = city; 
         console.log(`City Coordinates - Latitude: ${lat}, Longitude: ${lon}`);
         const data = await dat(lon,lat);
         const newData = `
-            <h3><b>Temperature : </b> ${data.dataseries[id].temp2m}°C</h3>
-            <h3><b>Humidity : </b> ${data.dataseries[id].rh2m}</h3>
-            <h3><b>Wind : </b> ${data.dataseries[id].wind10m.speed} m/s ${data.dataseries[id].wind10m.direction}</h3>
-            <h3><b>Weather Type : </b> ${data.dataseries[id].weather}</h3>
-            
+            <div class = "pl-8 py-1 font-semibold text-base">${ttt[id-1].place}</div>
+            <div class = "flex h-32 items-center">
+            <div class = "w-6/12 ml-8 flex items-center">
+            <div><img class = "h-24 w-24 " src = "/img/Sun.png"></div>
+            <div class = "text-6xl pl-12 text-white">${data.dataseries[0].temp2m}°C</div>
+            </div>
+            <div class = "w-6/12 pl-32">
+            <div class = "text-2xl pr-32 text-white">${data.dataseries[0].weather}</div>
+            <div><b>Humidity : </b> ${data.dataseries[0].rh2m}</div>
+            <div><b>Wind : </b> ${data.dataseries[0].wind10m.speed} m/s ${data.dataseries[0].wind10m.direction}</div>
+            </div>
+            </div>
         `
         weather.innerHTML = newData;
     } else {
         console.log('City not found');
     }
 };
+
+
+
+const all = async () =>{
+    const response = await fetch('/data/data.json');
+    const ttt = await response.json();
+    
+    full.innerHTML = '';
+    for (const city of ttt) {
+        const { lat, lon, place } = city;
+        const data = await dat(lon, lat);
+        const cityData = `
+            <div class="pl-8 py-1 font-semibold text-base">${place}</div>
+            <div class="flex h-32 items-center">
+                <div class="w-6/12 ml-8 flex items-center">
+                    <div><img class="h-24 w-24" src="/img/Sun.png" alt="Sun"></div>
+                    <div class="text-6xl pl-12 text-white">${data.dataseries[0].temp2m}°C</div>
+                </div>
+                <div class="w-6/12 pl-32">
+                    <div class="text-2xl pr-32 text-white">${data.dataseries[0].weather}</div>
+                    <div><b>Humidity: </b>${data.dataseries[0].rh2m}</div>
+                    <div><b>Wind: </b>${data.dataseries[0].wind10m.speed} m/s ${data.dataseries[0].wind10m.direction}</div>
+                </div>
+            </div>
+        `;
+        full.innerHTML += cityData; // Append data for each city
+    }
+};
+
+
+// all();
 
 
 
