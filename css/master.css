@@ -2,3 +2,11 @@ body {
     background-color: #d7d7d7;
     color: black;
 }
+
+.weather{
+    background-color:red;
+}
+
+h1{
+    background-color: blue;
+}
