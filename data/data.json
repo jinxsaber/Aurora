@@ -54,5 +54,6 @@
     {"id": 53, "lat": 18.208, "lon": 16.373, "place": "Vienna, Austria"},
     {"id": 54, "lat": 52.229, "lon": 21.012, "place": "Warsaw, Poland"},
     {"id": 55, "lat": 53.961, "lon": -1.070, "place": "York, England"},
-    {"id": 56, "lat": 47.376, "lon": 8.541, "place": "Zurich, Switzerland"}
+    {"id": 56, "lat": 47.376, "lon": 8.541, "place": "Zurich, Switzerland"},
+    {"id": 57, "lat": 28.613, "lon": 77.208, "place": "Delhi, India"}
 ]

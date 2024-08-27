@@ -6,12 +6,34 @@ const full = document.querySelector('.all');
 
 let cityId = -1;
 let Out_time = "";
+
+//Calling API endpoint
 const dat = async (lon,lat) => {
     const res = await fetch(`https://www.7timer.info/bin/api.pl?lon=${lon}&lat=${lat}&product=civil&output=json`);
     const temp = await res.json();
     return temp;
 }
 
+const day = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+//Function for Default value : Delhi
+const def = async () => {
+    const data = await dat(77.208, 28.613);
+    console.log(data);
+    const now = new Date().getDay();
+    document.querySelector('.temp').innerHTML = `
+    <div class = "font-light text-7xl flex">${data.dataseries[0].temp2m}<div class = "font-medium pl-0 text-4xl pt-1">°C</div></div>
+    <div class = "pt-4 font-medium text-lg flex text-black">${day[now]}, <div class = "text-slate-500">&nbsp;HH:MM AM/PM</div></div>
+    `;
+
+    document.querySelector('.status').innerHTML = `
+        <div class = "text-sm">Cloud Condition</div>
+    `
+}
+
+def();//Calling the function to log
+
+//Time function to show time
 const Time = (() => {
     let month = new Date().getMonth() + 1;
     let date = new Date().getDate();
@@ -50,7 +72,7 @@ const Time = (() => {
     Out_time = `Today ${date}/${month}/${y} ${time}:${minute} ${Meridian}`;
 })
 Time();
-console.log(Out_time);
+console.log(Out_time);//Log current time
 
 
 const dropdown = async () =>{
@@ -75,6 +97,8 @@ drop_cities.addEventListener('change', (event) => {
 
 dropdown();
 
+
+//shows specific city which was clicked
 const fetchCityCoordinates = async (id) => {
     Time();
     const response = await fetch('/data/data.json');
@@ -111,7 +135,7 @@ const fetchCityCoordinates = async (id) => {
 };
 
 
-
+/*
 const all = async () =>{
     Time();
     const response = await fetch('/data/data.json');
@@ -143,9 +167,9 @@ const all = async () =>{
         full.innerHTML += cityData; // Append data for each city
     }
 };
+*/
 
-
-// all();
+// all();  
 // window.addEventListener('DOMContentLoaded',() => all());
 
 
