@@ -41,7 +41,7 @@ const def = async () => {
     let precipitation = data.dataseries[0].prec_amount * 10;
     document.querySelector('.temp').innerHTML = `
     <div class = "font-light text-7xl flex">${data.dataseries[0].temp2m}<div class = "font-medium pl-0 text-4xl pt-1">°C</div></div>
-    <div class = "pt-4 font-medium text-lg flex text-black">${day[now]}, <div class = "text-slate-500">&nbsp;HH:MM AM/PM</div></div>
+    <div class = " pt-4 font-medium text-lg flex text-black"><div class = "max-[1136px]:hidden">${day[now]},</div> <div class = "text-slate-500">&nbsp;HH:MM AM/PM</div></div>
     `;
 
     document.querySelector('.status').innerHTML = `
@@ -51,29 +51,51 @@ const def = async () => {
     <div class = "bg-[#4d6b73] text-sm text-center font-medium h-3/6 flex justify-center items-center border-0 rounded-2xl px-8 w-max text-white">New Delhi, India</div>
     `
     document.querySelector('.today').innerHTML = `
-        <div class="w-[204px] h-44 bg-white flex flex-col border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
+        <div class="w-[30%] mr-[3%] h-44 bg-white border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
             <div class = "flex pb-8 text-base font-semibold text-slate-400">Humidity</div>
             <div class = "flex  font-medium text-4xl">${data.dataseries[0].rh2m}</div>
         </div>
-        <div class="w-[204px] h-44 bg-white flex flex-col border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
+        <div class="w-[30%] h-44 mr-[3%] bg-white border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
             <div class = "flex pb-8 text-base font-semibold text-slate-400">Wind Status</div>
             <div class = "flex  font-medium text-4xl">12.24<div class = "text-lg flex pt-3">&nbsp;km/h</div></div>
             <div class = "flex text-lg font-medium pt-4">${data.dataseries[0].wind10m.direction}</div>
         </div>
-        <div class="w-[204px] h-44 bg-white flex flex-col border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
+        <div class="w-[30%] h-44 bg-white border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
             <div class = "flex pb-8 text-base font-semibold text-slate-400">Precipitation</div>
             <div class = "flex  font-medium text-4xl">${precipitation}<div class = "text-lg flex pt-3">&nbsp;%</div></div>
             <div class = "flex text-lg font-medium pt-4">${data.dataseries[0].prec_type}</div>
         </div>
-        <div class="w-[204px] h-44 bg-white flex flex-col border-0 border-solid rounded-2xl py-4 pl-6">
+        <div class="w-[30%] h-44 mr-[3%] bg-white border-0 border-solid rounded-2xl py-4 pl-6">
             <div class = "flex pb-8 text-base font-semibold text-slate-400">Min Temperature</div>
             <div class = "flex  font-medium text-4xl">${minTemp.dataseries[0].temp2m.min}<div class = "text-lg">°C</div></div>
         </div>
-        <div class="w-[204px] h-44 bg-white flex flex-col border-0 border-solid rounded-2xl py-4 pl-6">
+        <div class="w-[30%] h-44 mr-[3%] bg-white border-0 border-solid rounded-2xl py-4 pl-6">
             <div class = "flex pb-8 text-base font-semibold text-slate-400">Max Temperature</div>
             <div class = "flex  font-medium text-4xl">${minTemp.dataseries[0].temp2m.max}<div class = "text-lg">°C</div></div>
         </div>
-        <div class="w-[204px] h-44 bg-white flex flex-col border-0 border-solid rounded-2xl py-4 pl-6">
+        <div class="w-[30%] h-44 bg-white border-0 border-solid rounded-2xl py-4 pl-6">
+            <div class = "flex pb-8 text-base font-semibold text-slate-400">Sunrise & Sunset</div>
+            <div class = "flex text-sm pb-4 font-semibold">${sun_data.results.sunrise}</div>
+            <div class = "flex text-sm font-semibold">${sun_data.results.sunset}</div>
+        </div>
+    `
+
+    document.querySelector('.todayu').innerHTML = `
+        <div class="w-[46%] mr-[3%] h-44 bg-white border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
+            <div class = "flex pb-8 text-base font-semibold text-slate-400">Humidity</div>
+            <div class = "flex  font-medium text-4xl">${data.dataseries[0].rh2m}</div>
+        </div>
+        <div class="w-[46%] h-44 bg-white border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
+            <div class = "flex pb-8 text-base font-semibold text-slate-400">Wind Status</div>
+            <div class = "flex  font-medium text-4xl">12.24<div class = "text-lg flex pt-3">&nbsp;km/h</div></div>
+            <div class = "flex text-lg font-medium pt-4">${data.dataseries[0].wind10m.direction}</div>
+        </div>
+        <div class="w-[46%] h-44 mr-[3%] bg-white border-0 border-solid rounded-2xl mb-3 py-4 pl-6">
+            <div class = "flex pb-8 text-base font-semibold text-slate-400">Precipitation</div>
+            <div class = "flex  font-medium text-4xl">${precipitation}<div class = "text-lg flex pt-3">&nbsp;%</div></div>
+            <div class = "flex text-lg font-medium pt-4">${data.dataseries[0].prec_type}</div>
+        </div>
+        <div class="w-[46%] h-44 bg-white border-0 border-solid rounded-2xl py-4 pl-6">
             <div class = "flex pb-8 text-base font-semibold text-slate-400">Sunrise & Sunset</div>
             <div class = "flex text-sm pb-4 font-semibold">${sun_data.results.sunrise}</div>
             <div class = "flex text-sm font-semibold">${sun_data.results.sunset}</div>
