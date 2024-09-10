@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src = "https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        </style>
     <!-- <link rel="stylesheet" href="/css/master.css"> -->
     <title>Aurora</title>
 </head>
-<body class = "bg-[#d6d7da] font-[Montserrat] flex justify-center lg:bg-sky-900">
-    <div class="interface flex items-center w-[1088px] max-[1136px]:w-[95%] h-[720px] my-20 border-solid border-0 rounded-[40px]">
-        <div class = "bg-white h-full border-solid border-0 rounded-l-[40px] w-[34.63%]">
+<body class = "bg-[#d6d7da] font-[Montserrat] lg:bg-sky-900">
+    <div class = "flex justify-center">
+    <div class="interface min-[768px]:flex max-[768px]:w-[500px] max-[640px]:w-[350px] items-center w-[1088px] max-[1136px]:w-[95%] my-20 border-solid border-0 rounded-[40px] max-[768px]:rounded-md">
+        <div class = "bg-white max-[768px]:w-[500px] max-[768px]:h-[1000px] max-[640px]:w-[350px] h-full border-solid border-0 rounded-l-[40px] w-[34.63%] max-[920px]:w-[55%] max-[768px]:rounded-2xl">
             <div class="search h-[12.5%] bg-blue-900"></div>
             <div class="image h-[32.666%] bg-black"></div>
             <div class="temp h-[21.5%] pl-8 border-solid border-b border-gray-600 flex flex-col justify-center "></div>
@@ -18,21 +22,26 @@
             <div class="location flex flex-1 justify-center items-center"></div>
             </div>
         </div>
-        <div class = "bg-[#f6f6f8] h-full border-solid border-0 rounded-r-[40px] w-full">
+        <div class = "bg-[#f6f6f8] border-solid border-0 rounded-r-[40px] w-full py-2 max-[768px]:rounded-2xl max-[768px]:mt-4">
             <div class="week my-12">
-                <div class = "mb-8 ml-2 h-8 text-lg font-semibold border-b border-black w-max">Week</div>
-                <div class="bg-blue-400 days flex h-28 mb-8"><!--Render data of all weeks in it using flex 1 and all-->
+                <div class = "mb-8 ml-2 h-8 text-lg font-semibold border-b border-black w-max max-[920px]:hidden">Week</div>
+                <div class="bg-blue-400 days flex h-28 mb-8 max-[920px]:hidden"><!--Render data of all weeks in it using flex 1 and all-->
                 </div>
-                <div class = "my-8 mx-[4%] font-semibold text-lg border-b border-black w-max">Today's Highlight</div>
+                <div class = "my-8 mx-[4%] font-semibold text-lg border-b border-black w-max max-[768px]:ml-8">Today's Highlight</div>
                 <div class="today max-[920px]:hidden flex flex-wrap items-center mx-[4%]">
                     
                 </div>
-                <div class="todayu min-[920px]:hidden flex flex-wrap items-center mx-[4%]">
+                <div class="todayu min-[920px]:hidden max-[768px]:hidden flex flex-wrap items-center mx-[4%]">
+
+                </div>
+                <div class="today_mu min-[768px]:hidden min-[768px]:h-[100px] flex flex-col items-center mx-[4%]">
 
                 </div>
             </div>
         </div>
     </div>
+</div>
+    <div class="cred"></div>
     <!-- <div class="h-32 flex items-center justify-center mb-4 bg-black">
         <select name="Cities" id="Menu" class = "h-8 w-96 pl-8 bg-[#d1d5db] flex border-solid rounded-2xl color">
             <option value="default">Choose a location</option>
