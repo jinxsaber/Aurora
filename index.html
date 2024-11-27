@@ -5,41 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aurora</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class = "flex items-center justify-center h-screen bg-[#d6d7da]">
-    <div class="main h-[90vh] w-[1000px] border-0 rounded-[48px] grid grid-cols-[30%_70%] shadow-2xl">
-        <div class="sidebar bg-white border-0 rounded-l-[48px]">
-            <div class="search w-5/6 flex bg-black">
+    <style>
+        @keyframes rotate{
+            0%{
+                transform:rotate(0deg);
+            }
+            100%{
+                transform: rotate(3600deg);
+            }
+        }
 
+        .rot{
+            animation: rotate 12s linear infinite;
+        }
+    </style>
+</head>
+<body class = "flex items-center justify-center bg-[#d6d7da] font-[Montserrat]">
+    <div class="load flex items-center justify-center absolute top-0 left-0 right-0 bottom-0 bg-[#d6d7da] z-50">
+        <div class="rot bg-[url('Sun.png')] bg-cover bg-center h-32 w-32 relative">
+            <img class = "absolute top-0 left-0 right-0 bottom-0 m-auto" src = "Cloudy.png">
+        </div>
+    </div>
+    <div class=" main flex items-center justify-center">
+        <div class = "my-[49.6px] h-[756px] w-[1060px] border-0 rounded-[48px] grid grid-cols-[30%_70%]">
+
+        <div class="sidebar bg-white border-0 rounded-l-[48px] grid grid-cols-1 grid-rows-[45%_55%] p-7">
+            <div class="search bg-black">
+                <div class="search_bar"></div>
+                <div class="status"></div>
             </div>
-            <div class="icon bg-pink-600"></div>
-            <div class="info"></div>
-            <div class="time"></div>
-            <div class="location"></div>
+            <div class="info grid grid-cols-1 grid-rows-[40%_60%]">
+                <div class="temp flex flex-col items-start justify-around pl-6 border-b-2">
+                    <div class = "text-7xl flex">Temp</div>
+                    <div class = "time pl-1 text-xl">ff</div>
+                </div>
+                <div class="flex flex-col justify-between items-center py-8">
+                    <div class = "condition pt-4 text-2xl">Cleddar</div>
+                    <div class = "place font-[Montserrat] text-lg w-5/6 border-0 rounded-xl h-16 bg-red-500 flex items-center justify-center">s</div>
+                </div>
+            </div>
         </div>
         <div class="content bg-[#f6f6f8] rounded-r-[48px] p-[5%] flex flex-col">
             <div class="options h-[8%] font-semibold text-lg">Week</div>
             <div class="week h-1/5 grid grid-cols-7 gap-1 py-2">
-                <div class = "h-full bg-blue-700 border-0 rounded-xl">Sun</div>
-                <div class = "h-full bg-blue-700 border-0 rounded-xl">Mon</div>
-                <div class = "h-full bg-blue-700 border-0 rounded-xl">Tue</div>
-                <div class = "h-full bg-blue-700 border-0 rounded-xl">Wed</div>
-                <div class = "h-full bg-blue-700 border-0 rounded-xl">Thr</div>
-                <div class = "h-full bg-blue-700 border-0 rounded-xl">Fri</div>
-                <div class = "h-full bg-blue-700 border-0 rounded-xl">Sat</div>
+                <div class = "week_one h-full bg-blue-700 border-0 rounded-xl">Sun</div>
+                <div class = "week_two h-full bg-blue-700 border-0 rounded-xl">Mon</div>
+                <div class = "week_three h-full bg-blue-700 border-0 rounded-xl">Tue</div>
+                <div class = "week_four h-full bg-blue-700 border-0 rounded-xl">Wed</div>
+                <div class = "week_five h-full bg-blue-700 border-0 rounded-xl">Thr</div>
+                <div class = "week_six h-full bg-blue-700 border-0 rounded-xl">Fri</div>
+                <div class = "week_seven h-full bg-blue-700 border-0 rounded-xl">Sat</div>
             </div>
-            <div class="today h-[72%]">
+            <div class="today h-[72%] select-none">
                 <div class="highlight flex items-center text-lg font-semibold h-1/5">Today`s Highlight</div>
-                <div class="data grid grid-cols-3 gap-4 h-4/5">
-                    <div class = "bg-white border-0 rounded-2xl flex justify-center">d</div>
-                    <div class = "bg-white border-0 rounded-2xl flex justify-center">d</div>
-                    <div class = "bg-white border-0 rounded-2xl flex justify-center">d</div>
-                    <div class = "bg-white border-0 rounded-2xl flex justify-center">d</div>
-                    <div class = "bg-white border-0 rounded-2xl flex justify-center">d</div>
-                    <div class = "bg-white border-0 rounded-2xl flex justify-center">d</div>
+                <div class="data grid grid-cols-3 gap-4 h-4/5 grid-rows-2">
+                    <div class = "uv bg-white border-0 rounded-2xl flex flex-col justify-between items-left h-48 px-6 py-5">
+                        <div class = "text-base text-[#a6a6a6]">UV Index</div>
+                        <div class = "text-3xl">meter</div>
+                    </div>
+                    <div class = "wind bg-white border-0 rounded-2xl flex flex-col justify-between items-left h-48 px-6 py-5">
+                        <div class = "text-base text-[#a6a6a6]">Wind Status</div>
+                        <div class = "text-3xl font-medium flex">d</div>
+                        <div class = "text-lg">d</div>
+                    </div>
+                    <div class = "sun bg-white border-0 rounded-2xl flex flex-col justify-between items-left h-48 px-6 py-5">
+                        <div class = "text-base text-[#a6a6a6]">Sunrise & Sunset</div>
+                        <div class = "text-base font-medium flex items-center"></div>
+                        <div class = "text-base font-medium flex items-center pb-2"></div>
+                    </div>
+                    <div class = "humid bg-white border-0 rounded-2xl flex flex-col justify-between items-left h-48 px-6 py-5">
+                        <div class = "text-base text-[#a6a6a6]">Humidity</div>
+                        <div class = "text-3xl font-medium flex"></div>
+                        <div class = "text-lg">Normal</div>
+                    </div>
+                    <div class = "vis bg-white border-0 rounded-2xl flex flex-col justify-between items-left h-48 px-6 py-5">
+                        <div class = "text-base text-[#a6a6a6]">Visibility</div>
+                        <div class = "text-3xl font-medium flex">1 km</div>
+                        <div class = "text-lg">Average 😊</div>
+                    </div>
+                    <div class = "aqi bg-white border-0 rounded-2xl flex flex-col justify-between items-left h-48 px-6 py-5">
+                        <div class = "text-base text-[#a6a6a6]">Air Quality</div>
+                        <div class = "text-3xl font-medium">d</div>
+                        <div class = "text-lg">d</div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>

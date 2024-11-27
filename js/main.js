@@ -14,7 +14,7 @@ const dat = async (lon,lat) => {
     return temp;
 }
 
-const sun = async(lon,lat) =>{
+const sun = async (lon,lat) =>{
     const res = await fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}`);
     const data = await res.json();
     return data;
@@ -181,6 +181,7 @@ const Time = (() => {
 
 
     Out_time = `Today ${date}/${month}/${y} ${time}:${minute} ${Meridian}`;
+    return Out_time;
 })
 Time();
 console.log(Out_time);//Log current time
