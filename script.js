@@ -75,7 +75,7 @@ fetchAll(26.81,82.76);
 
 let mainData = {};
 
-fetch('data/cities.json')
+fetch('./data/cities.json')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
