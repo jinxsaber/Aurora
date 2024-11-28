@@ -18,6 +18,19 @@
         .rot{
             animation: rotate 12s linear infinite;
         }
+        .suggestions {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-top: none;
+            background-color: #fff;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+        .items{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class = "flex items-center justify-center bg-[#d6d7da] font-[Montserrat]">
@@ -30,17 +43,20 @@
         <div class = "my-[49.6px] h-[756px] w-[1060px] border-0 rounded-[48px] grid grid-cols-[30%_70%]">
 
         <div class="sidebar bg-white border-0 rounded-l-[48px] grid grid-cols-1 grid-rows-[45%_55%] p-7">
-            <div class="search bg-black">
-                <div class="search_bar"></div>
+            <div class="search ">
+                <div class="relative flex flex-col h-1/5 justify-center items-center bg-pink-50 ">
+                    <input type="text" class = "search_bar h-8 pl-4 text-black" placeholder="Search for places ...">
+                    <div class="suggestion hidden"></div>
+                </div>
                 <div class="status"></div>
             </div>
-            <div class="info grid grid-cols-1 grid-rows-[40%_60%]">
+            <div class="info select-none grid grid-cols-1 grid-rows-[40%_60%]">
                 <div class="temp flex flex-col items-start justify-around pl-6 border-b-2">
                     <div class = "text-7xl flex">Temp</div>
                     <div class = "time pl-1 text-xl">ff</div>
                 </div>
                 <div class="flex flex-col justify-between items-center py-8">
-                    <div class = "condition pt-4 text-2xl">Cleddar</div>
+                    <div class = "condition pt-4 text-2xl">Clear</div>
                     <div class = "place font-[Montserrat] text-lg w-5/6 border-0 rounded-xl h-16 bg-red-500 flex items-center justify-center">s</div>
                 </div>
             </div>

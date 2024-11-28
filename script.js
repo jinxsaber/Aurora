@@ -12,6 +12,8 @@ const temperature = document.querySelector('.temp');
 const temp_data = temperature.querySelectorAll('div');
 const place = document.querySelector('.place');
 const condition = document.querySelector('.condition');
+const search = document.querySelector('.search_bar');
+const suggestion = document.querySelector('.suggestion');
 
 const API = '6e8687216b3942508c0182511241111';
 
@@ -70,6 +72,63 @@ const fetchAll = async(lat,lon) =>{
 
 fetchAll(26.81,82.76);
 
+
+let mainData = {};
+
+fetch('data/cities.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (!Array.isArray(data)) {
+      throw new Error('Data is not an array');
+    }
+    mainData = data;
+    console.log(mainData);
+  })
+  .catch(error => {
+    console.error('There was a problem fetching the JSON file:', error);
+  });
+
+const suggestions = (element) => {
+  suggestion.innerHTML = "";
+  if (!element) {
+    suggestion.classList.add("hidden");
+    return;
+  }
+  
+  const newData = mainData.filter(item => item.place.toLowerCase().includes(element.toLowerCase()));
+
+  if (newData.length) {
+    newData.forEach(item => {
+      const items = document.createElement("div");
+      items.classList.add("items");
+      items.textContent = item.place;
+
+      items.addEventListener("click", () => {
+        search.value = "";
+        suggestion.innerHTML = "";
+        suggestion.classList.add("hidden");
+
+        fetchAll(item.lat, item.lon);  // Assuming you have a function `fetchAll`
+      });
+
+      suggestion.appendChild(items);
+    });
+
+    suggestion.classList.remove("hidden");
+  } else {
+    suggestion.classList.add("hidden");
+  }
+}
+
+search.addEventListener("input", (e) => {
+  const call = e.target.value;
+  suggestions(call);
+});
 
 
 
