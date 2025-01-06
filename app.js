@@ -24,8 +24,8 @@ app.get('/Locations',(req,res)=>{
     res.json(Data);
 });
 
-app.listen(3000, ()=>{
-    console.log('Running');
-});
+// app.listen(3000, ()=>{
+//     console.log('Running');
+// });
 
-// module.exports = app;
+module.exports = app;
