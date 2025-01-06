@@ -61,8 +61,8 @@ const fetchAll = async(lat,lon) =>{
     wind_data[2].innerHTML = `${temp.current.wind_dir}`;
     vis_data[1].innerHTML = `${temp.current.vis_km} <div class = "text-base flex items-end">&nbsp;&nbsp;km</div>`;
     humid_data[1].innerHTML = `${temp.current.humidity} <div class = "text-base flex items-center">&nbsp;&nbsp;%</div>`;
-    sun_data[1].innerHTML = `<img class = "h-8"src="Sun Up.png" alt="" srcset=""> &nbsp;&nbsp;${SunData.results.sunrise}`
-    sun_data[2].innerHTML = `<img class = "h-8"src="Sun Down.png" alt="" srcset=""> &nbsp;&nbsp;${SunData.results.sunset}`;
+    sun_data[1].innerHTML = `<img class = "h-8"src="/images/Sun Up.png" alt="" srcset=""> &nbsp;&nbsp;${SunData.results.sunrise}`
+    sun_data[2].innerHTML = `<img class = "h-8"src="/images/Sun Down.png" alt="" srcset=""> &nbsp;&nbsp;${SunData.results.sunset}`;
     temp_data[0].innerHTML = `${Math.floor(temp.current.temp_c)} <div class = "text-4xl pt-1"> °C</div>`;
     temp_data[1].innerHTML = `${t}`;
     place.innerHTML = `${temp.location.name}`;
@@ -75,7 +75,7 @@ fetchAll(26.81,82.76);
 
 let mainData = {};
 
-fetch('./data/cities.json')
+fetch('/Locations')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
