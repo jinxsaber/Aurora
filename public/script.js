@@ -14,6 +14,7 @@ const place = document.querySelector('.place');
 const condition = document.querySelector('.condition');
 const search = document.querySelector('.search_bar');
 const suggestion = document.querySelector('.suggestion');
+const weekForecast = document.querySelector('.week');
 
 const API = '6e8687216b3942508c0182511241111';
 
@@ -29,10 +30,14 @@ const data = async (lat,lon)=>{
     const Sun = await fetch(`https://api.sunrisesunset.io/json?lat=${lat}&lng=${lon}`);
     const SunData = await Sun.json();
 
+    const forecast = await fetch(`https://www.7timer.info/bin/civillight.php?lon=${lon}&lat=${lat}&ac=0&unit=metric&output=json&tzshift=0`);
+    const foreCast = await forecast.json();
+    console.log(foreCast);
+
     load.style.display = 'none';
     main.style.display = 'block';
 
-    return {temp, SunData};
+    return {temp, SunData,foreCast};
     // console.log(temp);
 }   catch (error) {
     console.error('Error fetching forecast data:', error);
@@ -54,7 +59,7 @@ const Time = ()=>{
 
 const fetchAll = async(lat,lon) =>{
     const t = Time();
-    const {temp,SunData} = await data(lat,lon);
+    const {temp,SunData,foreCast} = await data(lat,lon);
     console.log(temp);
     console.log(SunData);
     wind_data[1].innerHTML = `${temp.current.wind_kph} <div class = "text-base flex items-end">&nbsp;&nbsp;km/h</div>`;
@@ -67,6 +72,26 @@ const fetchAll = async(lat,lon) =>{
     temp_data[1].innerHTML = `${t}`;
     place.innerHTML = `${temp.location.name}`;
     condition.innerHTML = `${temp.current.condition.text}`;
+
+
+    const currentDate = new Date();
+    const day = currentDate.getDay();
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const Days = weekForecast.querySelectorAll('div');
+
+    let num = 0;
+    let val = 0;
+
+    Days.forEach((divs) => {
+      divs.innerHTML = `
+          <div class = "">${days[(day+(++num%7))%7]}</div>
+          <div class = "bg-red-500 w-10 h-10"></div>
+          <div class = "flex"><div>${foreCast.dataseries[val].temp2m.max}°</div> <div class = "text-slate-600">&nbsp;${foreCast.dataseries[val].temp2m.min}°</p></div>
+      `
+      val++;
+      console.log(days[(day+(num))%7]);
+    });
+
 
 }
 
